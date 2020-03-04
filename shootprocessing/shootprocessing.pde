@@ -6,15 +6,15 @@ int bulletPointer = 0;
 Meat[] meats;
 int meatNum = 3;
 int score = 0;
-int gray_x = 300 ;
-int gray_y = 500;
+int location_x = 300 ;
+int location_y = 500;
 import processing.serial.*;
 Serial myPort;
 byte[] data = new byte[3];
 void setup() {
   size(600, 600);
   dog = loadImage("dog.png");
-  meat = loadImage("meat.jpg");
+  meat = loadImage("meat.png");
   bullets = new Bullet[bulletNum];
   meats = new Meat[meatNum];
   for (int i=0; i<bulletNum; i++) {
@@ -30,20 +30,20 @@ void setup() {
 int X, Y, Button;
 void draw() {
   getData();
-  background(#FFD8F3);
-  image(dog, gray_x, gray_y, 80, 80);
+  background(#000000);
+  image(dog, location_x, location_y, 80, 80);
   if (keyCode == UP||Button ==1) {
-      bullets[bulletPointer].bullet(gray_x+40, gray_y+40);
+      bullets[bulletPointer].bullet(location_x+40, location_y+40);
       bulletPointer+=1;
       if (bulletPointer >= bulletNum) {
         bulletPointer = 0;
       }
     }
     if (keyCode == LEFT||X ==1) {
-      gray_x = (gray_x-10)%600;
+      location_x = (location_x-10)%600;
     }
     if (keyCode == RIGHT||Y==1) {
-      gray_x =(gray_x+10)%600;
+      location_x =(location_x+10)%600;
     }
   for (int i=0; i<bulletNum; i++) {
     bullets[i].show();
